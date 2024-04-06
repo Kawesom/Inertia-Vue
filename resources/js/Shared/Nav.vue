@@ -1,8 +1,11 @@
 <template>
-    <nav>
-        <li><Link href="/">Home</Link></li>
-        <li><Link href="/settings">Settings</Link></li>
-        <li><Link href="/users">Users</Link></li>
+    <nav class="mt-6">
+        <ul class="list-disc">
+        <li><Link href="/" class="text-blue-500 hover:underline">Home</Link></li>
+        <li><Link href="/settings" class="text-blue-500 hover:underline">Settings</Link></li>
+        <li><Link href="/users" class="text-blue-500 hover:underline">Users</Link></li>
+        <li><Link href="/logout" class="text-blue-500 hover:underline" method="post" as="button">Log out</Link></li>
+    </ul>
     </nav>
 </template>
 
