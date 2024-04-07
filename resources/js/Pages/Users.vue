@@ -1,5 +1,7 @@
 <template>
-    
+    <Head title="User"/>
+            
+      
         <h1>
             Users
         </h1>
@@ -15,6 +17,7 @@
 
 <script>
 import Layout from "../Shared/Layout.vue";
+//import { Head } from "@inertiajs/vue3";
 
     export default 
     {

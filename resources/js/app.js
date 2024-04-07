@@ -1,5 +1,5 @@
 import { createApp, h } from 'vue'
-import { Link, createInertiaApp } from '@inertiajs/vue3'
+import { Link, createInertiaApp, Head } from '@inertiajs/vue3'
 import NProgress from 'nprogress'
 import { router } from '@inertiajs/vue3'
 
@@ -12,8 +12,10 @@ createInertiaApp({
     createApp({ render: () => h(App, props) })
       .use(plugin)
       .component('Link',Link)
+      .component('Head', Head)
       .mount(el)
   },
+  title: title => `Kamal: ${title}`,
   progress: {
     // The delay after which the progress bar will appear, in milliseconds...
     delay: 250,
