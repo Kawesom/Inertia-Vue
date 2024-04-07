@@ -1,5 +1,5 @@
 <template>
-    <Layout>
+    
         <h1>
             Users
         </h1>
@@ -10,13 +10,18 @@
 
             <Link href="/users" class="text-blue-500" preserve-scroll>Refresh</Link>
         </div>
-    </Layout>
+    
 </template>
 
-<script setup>
+<script>
 import Layout from "../Shared/Layout.vue";
 
-    defineProps({
+    export default 
+    {
+        layout: Layout,
+
+        props: {
         time: String
-    })
+        }
+    }
 </script>
