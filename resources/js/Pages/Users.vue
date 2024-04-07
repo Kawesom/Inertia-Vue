@@ -13,15 +13,10 @@
     </Layout>
 </template>
 
-<script>
-import { Link } from "@inertiajs/vue3";
+<script setup>
 import Layout from "../Shared/Layout.vue";
 
-export default {
-    components: { Layout, Link },
-
-    props: {
+    defineProps({
         time: String
-    }
-}
+    })
 </script>

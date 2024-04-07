@@ -7,10 +7,6 @@
     </Layout>
 </template>
 
-<script>
+<script setup>
 import Layout from "../Shared/Layout.vue";
-
-export default {
-    components: { Layout },
-}
 </script>
