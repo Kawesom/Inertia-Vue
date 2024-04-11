@@ -9,6 +9,6 @@ export default defineConfig({
             refresh: true,
         }),
         vue(),
-        splitVendorChunkPlugin(),
+        
     ],
 });

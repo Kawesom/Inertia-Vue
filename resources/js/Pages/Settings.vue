@@ -7,13 +7,6 @@
    
 </template>
 
-<script>
-import Layout from "../Shared/Layout.vue";
-//import { Head } from "@inertiajs/vue3";
+<script setup>
 
-export default {
-        layout: Layout,
-
-        
-};
 </script>
