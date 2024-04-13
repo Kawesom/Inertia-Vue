@@ -10,10 +10,14 @@ Route::get('/', function () {
 
 Route::get('/users', function () {
     return Inertia::render('Users',[
-        'users' => User::all()->map(
-            fn($user) => [
-                'name' => $user->name
-            ])
+        'users' => User::paginate(10)->through(// through is like the map function but applied to the current list 
+            function($user) {
+                return [
+                    'id' => $user->id,
+                    'name' => $user->name
+                ];
+            }
+        )
     ]);
 });
 
