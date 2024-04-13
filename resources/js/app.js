@@ -1,7 +1,6 @@
 import { createApp, h } from 'vue'
 import { Link, createInertiaApp, Head } from '@inertiajs/vue3'
 import NProgress from 'nprogress'
-import { router } from '@inertiajs/vue3'
 import Layout from "./Shared/Layout.vue";
 
 createInertiaApp({
@@ -11,7 +10,7 @@ createInertiaApp({
     page.default.layout = page.default.layout ??= Layout
     return page
   },
-  setup({ el, App, props, plugin }) {
+  setup({ el, App, props, plugin}) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
       .component('Link',Link)
