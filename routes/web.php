@@ -9,15 +9,32 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
+Route::get('/users/create', function () {
+    return Inertia::render('Users/Create');
+});
+
+Route::post('/users', function () {
+    //validate request -> create user -> redirect
+    $attributes = Request::validate([
+       'name' => 'required',
+       'email' => ['required','email'],
+       'password' => 'required'
+    ]); 
+
+    User::create($attributes);
+
+    return redirect('/users');
+});
+
 Route::get('/users', function () {
-    return Inertia::render('Users',[
+    return Inertia::render('Users/Index',[
         'users' => User::query()
         ->when(Request::input('search'), function($query, $search) {
             $query->where('name','like', '%' .$search.'%');
         })
         ->paginate(10)
         ->withQueryString()
-        ->through(// through is like the map function but applied to the current list 
+        ->through(// through is like the map function but applied to the current list
             fn($user) =>
             [
             'id' => $user->id,

@@ -8,7 +8,7 @@
         </h1>
         <input v-model="search" type="text" placeholder="Search..." class="border px-2 rounded-sm"/>
     </div>
-    
+
 
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -46,17 +46,23 @@
 
 <script setup>
 import { ref, watch } from 'vue';
-import Pagination from '../Shared/Pagination.vue';
-import {router} from '@inertiajs/vue3'; 
+import Pagination from '../../Shared/Pagination.vue';
+import {router} from '@inertiajs/vue3';
+//import debounce from 'lodash/debounce';
 
 let props = defineProps({
     users: Object,
     filters: Object
-})
+});
 
 let search = ref(props.filters.search);
 
 watch(search, value => {
     router.get('/users',{ search: value },{ preserveState: true, replace:true })
 });
+
+/* watch(search, debounce((value) =>   {
+    router.get('/users',{ search: value },{ preserveState: true, replace:true })
+}), 300); */
 </script>
+
