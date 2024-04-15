@@ -13,7 +13,7 @@
       class="border border-gray-700 rounded-lg p-2 w-full"
       required
     />
-    
+    <div v-if="$page.props.errors.password" v-text="$page.props.errors.password" class="text-red-500 text-xs mt-1"></div>
   </div>
 </template>
 
@@ -22,6 +22,7 @@ defineProps({
   value: String,
   type: String,
   name: String,
+  errors: Object
 });
 
 defineEmits(["update:value"]);

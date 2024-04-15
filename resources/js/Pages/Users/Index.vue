@@ -52,7 +52,10 @@
 import { ref, watch } from 'vue';
 import Pagination from '../../Shared/Pagination.vue';
 import {router} from '@inertiajs/vue3';
-//import debounce from 'lodash/debounce';
+//import {debounce} from '@types/lodash';
+import { debounce } from 'throttle-debounce';
+//from https://github.com/niksy/throttle-debounce
+
 
 let props = defineProps({
     users: Object,
@@ -60,13 +63,13 @@ let props = defineProps({
 });
 
 let search = ref(props.filters.search);
-
+/*
 watch(search, value => {
     router.get('/users',{ search: value },{ preserveState: true, replace:true })
 });
-
-/* watch(search, debounce((value) =>   {
+*/
+ watch(search, debounce(500,function(value) {
     router.get('/users',{ search: value },{ preserveState: true, replace:true })
-}), 300); */
+}));
 </script>
 
