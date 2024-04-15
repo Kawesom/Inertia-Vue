@@ -4,6 +4,13 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\User;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\Auth\LoginController;
+
+Route::get('/login',[LoginController::class, 'create'])->name('login');
+Route::post('/login',[LoginController::class, 'store']);
+Route::post('/logout',[LoginController::class, 'destroy'])->middleware('auth');
+
+Route::middleware('auth')->group(function () {
 
 Route::get('/', function () {
     return Inertia::render('Home');
@@ -19,7 +26,7 @@ Route::post('/users', function () {
        'name' => 'required',
        'email' => ['required','email'],
        'password' => 'required'
-    ]); 
+    ]);
 
     User::create($attributes);
 
@@ -49,4 +56,4 @@ Route::get('/settings', function () {
     return Inertia::render('Settings');
 });
 
-
+});
