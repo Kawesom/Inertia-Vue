@@ -50,7 +50,7 @@
 
 <script setup>
 import { ref, watch } from 'vue';
-import Pagination from '../../Shared/Pagination.vue';
+import Pagination from '@/Shared/Pagination.vue';
 import {router} from '@inertiajs/vue3';
 //import {debounce} from '@types/lodash';
 import { debounce } from 'throttle-debounce';
