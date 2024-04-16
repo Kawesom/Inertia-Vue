@@ -57,10 +57,10 @@
     password: '',
   });
 
-  form.processing = false;
+  //form.processing = false;
 
   let submit = () => {
-    form.processing = true;
+    //form.processing = true;
     router.post('/users',form);
   };
 

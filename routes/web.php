@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\User;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/login',[LoginController::class, 'create'])->name('login');
@@ -18,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('/users/create', function () {
     return Inertia::render('Users/Create');
-});
+})->can('create, App\Model\User'); //middleware
 
 Route::post('/users', function () {
     //validate request -> create user -> redirect
@@ -45,10 +46,16 @@ Route::get('/users', function () {
             fn($user) =>
             [
             'id' => $user->id,
-            'name' => $user->name
+            'name' => $user->name,
+            'can' => [
+                'edit' => Auth::user()->can('update',$user)
+            ]
             ]
             ),
-            'filters' => Request::only(['search'])
+            'filters' => Request::only(['search']),
+            'can' => [
+                'createUser' => Auth::user()->can('create', User::class)
+            ]
     ]);
 });
 
