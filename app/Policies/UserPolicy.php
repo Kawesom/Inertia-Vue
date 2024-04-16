@@ -33,11 +33,45 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can update or edit the model.
+     * Determine whether the user can edit the model.
      */
-    public function update(User $user, User $model): bool
+    public function edit(User $user, User $model): bool
     {
         return (bool) mt_rand(0,1);
+    }
+
+    public function update(User $user, User $model): bool
+    {
+        // Get current user
+       $user = Auth::id();
+       $user = User::findOrFail($userId);
+
+        // Validate the data submitted by user
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:225|'. Rule::unique('users')->ignore($user->id),
+        ]);
+
+        // if fails redirects back with errors
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Fill user model
+        $user->fill([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+
+        // Save user to database
+        $user->save();
+
+        // Redirect to route
+        return redirect('/users');
+    }
+
     }
 
     /**

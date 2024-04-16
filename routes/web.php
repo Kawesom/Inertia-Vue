@@ -21,6 +21,14 @@ Route::get('/users/create', function () {
     return Inertia::render('Users/Create');
 })->can('create, App\Model\User'); //middleware
 
+Route::put('/users/edit', function () {
+    return Inertia::render('Users/Edit');
+});
+
+Route::get('/users/edit', function () {
+    return Inertia::render('Users/Edit',UserPolicy::class);//this should be a controller, so make a user controller
+});
+
 Route::post('/users', function () {
     //validate request -> create user -> redirect
     $attributes = Request::validate([
@@ -48,7 +56,7 @@ Route::get('/users', function () {
             'id' => $user->id,
             'name' => $user->name,
             'can' => [
-                'edit' => Auth::user()->can('update',$user)
+                'edit' => Auth::user()->can('edit',$user)
             ]
             ]
             ),
