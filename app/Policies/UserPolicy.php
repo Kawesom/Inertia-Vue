@@ -72,7 +72,6 @@ class UserPolicy
         return redirect('/users');
     }
 
-    }
 
     /**
      * Determine whether the user can delete the model.
